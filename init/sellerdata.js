@@ -3,8 +3,8 @@ const Seller = require("../models/seller.js");
 let sampleSellers = [
     new Seller({
         title: "Green Vegetables",
-        name: "Spinach",
-        quantity: 50,
+        name: "Spinachs",
+        quantity: 60,
         description: "Fresh spinach leaves rich in iron and nutrients",
         price: 30,
         location: "New York",
