@@ -17,7 +17,7 @@ const customerSchema = new Schema({
     location:{
         type:String,
         required:true
-    },
+    }
 })
 
 const Customer = mongoose.model("Customer", customerSchema);
