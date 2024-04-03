@@ -18,6 +18,10 @@ const customerSchema = new Schema({
         type:String,
         required:true
     },
+    country:{
+        type:String,
+        required:true
+    }
 })
 
 const Customer = mongoose.model("Customer", customerSchema);
