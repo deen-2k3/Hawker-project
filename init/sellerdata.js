@@ -36,7 +36,7 @@ let sampleSellers = [
         price: 15,
         location: "Berlin",
         country: "Germany"
-    }),as
+    }),
     new Seller({
         title: "Fresh Herbs",
         name: "Basil",
