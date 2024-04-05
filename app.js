@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 const Seller= require("./models/seller.js");
 const sellerApp=require("./sellerapp.js");
 
+const customerRouter = require("./routes/customer.js");
+
 const dbUrl="mongodb://127.0.0.1:27017/hawker"
 main()
 .then(()=>{
@@ -24,7 +26,7 @@ app.get("/", (req, res)=>{
 
 });
 app.use(sellerApp);
-
+app.use("/customer", customerRouter);
 
 
 app.listen(port, ()=>{
