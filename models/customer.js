@@ -10,11 +10,11 @@ const customerSchema = new Schema({
         type:String,
         required:true
     },
-    gmail:{
+    email:{
         type:String,
         required:true
     },
-    location:{
+    address:{
         type:String,
         required:true
     }

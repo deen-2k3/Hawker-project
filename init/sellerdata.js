@@ -92,4 +92,4 @@ let sampleSellers = [
         country: "Spain"
     })
 ];
-     module.exports={data:sampleSellers};
+ module.exports={data:sampleSellers};
