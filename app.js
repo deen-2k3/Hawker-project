@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const Seller= require("./models/seller.js");
 const sellerApp=require("./sellerapp.js");
 
+
 const dbUrl="mongodb://127.0.0.1:27017/hawker"
 main()
 .then(()=>{
@@ -23,7 +24,14 @@ app.get("/", (req, res)=>{
     res.send(" This is home route");
 
 });
+
+
 app.use(sellerApp);
+
+    
+    // res.send(allSellers);
+
+
 
 
 
