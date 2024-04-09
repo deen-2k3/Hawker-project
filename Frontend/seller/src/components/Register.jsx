@@ -4,6 +4,8 @@ function Register(){
     return (
       <div className='d-flex justify-content-center align-items-center bg-primary vh-100'>
         <div className='bg-white p-3 rounded w-25'>
+        <p>SignUp</p>
+
           <form action="">
           <div className='mb-3'>
               <label htmlFor="text">Username</label>
