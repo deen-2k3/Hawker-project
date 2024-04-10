@@ -4,16 +4,17 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Login from './components/Login.jsx';
+// import Login from './components/Login.jsx';
 import Register from './components/Register.jsx'
 import {BrowserRouter,Routes,Route}  from 'react-router-dom'
 import Homenavbar from './components/Homenavbar.jsx';
-
+import Cart from './components/Cart.jsx';
 
 function App() {
   
 
   return (
+    <>
     <BrowserRouter>
     <Routes>
     <Route path='/' element={<Homenavbar/>}></Route>
@@ -23,6 +24,9 @@ function App() {
     </Routes>
     
     </BrowserRouter>
+    {/* <Cart/> */}
+
+    </>
   )
 }
 
