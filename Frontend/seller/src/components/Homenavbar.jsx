@@ -10,7 +10,7 @@ function Homenavbar() {
         <Container>
           <Navbar.Brand href="#home">Navbar</Navbar.Brand>
           <Nav className="ml-auto">
-            <Nav.Link href="#home">Add items</Nav.Link>
+            <Link to="/addhawkerhome" className="nav-link">Add Hawker</Link>
             <Link to="/login" className="nav-link">Login</Link>
             <Link to="/register" className="nav-link">Signup</Link>
           
