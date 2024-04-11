@@ -50,3 +50,17 @@ width:400px;
     padding: 5px 10px;
     margin-right: 10px;
 }
+.total{
+    display: flex;
+    justify-content: space-between;
+}
+.total_des{
+    font-weight: bold;
+    font-size:25px;
+    color: brown;
+}
+.total_price{
+    font-weight: bold;
+    font-size:25px;
+    color: green; 
+}
