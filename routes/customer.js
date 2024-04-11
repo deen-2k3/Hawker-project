@@ -1,5 +1,4 @@
 const express= require("express");
-const app = express();
 const mongoose = require("mongoose");
 const Customer = require("../models/customer.js");
 const dbUrl="mongodb://127.0.0.1:27017/hawker"
