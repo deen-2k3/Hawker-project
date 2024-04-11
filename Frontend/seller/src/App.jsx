@@ -15,7 +15,7 @@ function App() {
 
   return (
     <>
-    <BrowserRouter>
+    {/* <BrowserRouter>
     <Routes>
     <Route path='/' element={<Homenavbar/>}></Route>
       <Route path='/login' element={<Login/>}></Route>
@@ -23,8 +23,8 @@ function App() {
 
     </Routes>
     
-    </BrowserRouter>
-    {/* <Cart/> */}
+    </BrowserRouter> */}
+    <Cart/>
 
     </>
   )
