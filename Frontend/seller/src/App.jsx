@@ -4,13 +4,13 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Login from './components/login.jsx';
+import Login from './components/Login.jsx';
 import Register from './components/Register.jsx'
 import {BrowserRouter,Routes,Route}  from 'react-router-dom'
 import Homenavbar from './components/Homenavbar.jsx';
 
 import Cart from './components/Cart.jsx';
-
+import CustomerHome from './components/CustomerHome.jsx';
 import AddHawkerHome from './pages/AddHawkerHome.jsx';
 import servertest from './servertest.jsx';
 
@@ -34,7 +34,7 @@ function App() {
     </BrowserRouter>
 
     {/* <Cart/> */}
-
+    {/* <CustomerHome/> */}
 
     </>
   )

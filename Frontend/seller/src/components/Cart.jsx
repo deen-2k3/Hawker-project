@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import vegetablesData from '../Data/cartData';
 import '../styles/cart.css';
+import Homenavbar from './Homenavbar.jsx'
 export default function Cart(){
     const [items, setItems] = useState([]);
     const[price, setPrice] = useState(0);
@@ -10,6 +11,32 @@ export default function Cart(){
             ans+=item.price*item.amount;
         })
         setPrice(ans);
+    }
+    const incAmount =(id)=>{
+        setItems(prevItems=>{
+            return prevItems.map((item)=>{
+                if(id===item.id){
+                    return {...item, amount:item.amount+1}
+                }
+                return item;
+            })
+        }
+        )
+    }
+    const decAmount = (id)=>{
+        setItems(prevItems=>{
+            return prevItems.map((item)=>{
+                if(id==item.id){
+                    return {...item, amount:item.amount-1}
+                }
+                return item;
+            })
+        })
+    }
+    const deleteCart = (id)=>{
+        setItems(prevItems=>{
+            prevItems.filter(item => item.id!=id);
+        })
     }
     
     useEffect(()=>{
@@ -22,6 +49,7 @@ export default function Cart(){
 
     return (
     <>
+    <Homenavbar/>
         <div className="cart">
             {items.map((item)=>(
                 <div className="cart_box">
@@ -31,13 +59,13 @@ export default function Cart(){
                     {/* <p>Image desciption</p> */}
                 </div>
                 <div className="amount_btn">
-                    <button>+</button>
+                    <button onClick={()=>decAmount(item.id)}>-</button>
                     {item.amount}
-                    <button>-</button>
+                    <button onClick={()=>incAmount(item.id)}>+</button>
                 </div>
                 <div className="checkout_sec">
-                    <span>{item.price}</span>
-                    <button>Remove</button>
+                    <span>Rs-{item.price*item.amount}</span>
+                    <button onClick={()=>deleteCart(item.id)}>Remove</button>
                 </div>
             </div>
             ))}
