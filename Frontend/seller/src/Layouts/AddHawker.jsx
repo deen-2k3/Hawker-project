@@ -28,25 +28,15 @@ function Hawkernavbar() {
 
 function AddHawker() {
   return (
-    <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="https://plus.unsplash.com/premium_photo-1686156706311-347c7a913567?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8dmVnZXRhYmxlc3xlbnwwfHwwfHx8MA%3D%3D" />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-      </Card.Body>
-      <ListGroup className="list-group-flush">
-        <ListGroup.Item>Cras justo odio</ListGroup.Item>
-        <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-        <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
-      </ListGroup>
-      <Card.Body>
-        <Card.Link href="#">Card Link</Card.Link>
-        <Card.Link href="#">Another Link</Card.Link>
-      </Card.Body>
-    </Card>
+    <div className='d-flex align-items-center flex-column'> {/* Applying 'd-flex', 'align-items-center', and 'flex-column' classes */}
+      <div className="text-center mb-3"> {/* Encapsulating content in a div for text centering and adding margin bottom */}
+        <h1>Partner With Hawker at 0% commission for the 1st month!</h1>
+      </div>
+      <div className="text-center"> {/* Encapsulating buttons in a div for text centering */}
+      <Link to="/hawkerregister" className="btn btn-primary  d-inline-block" style={{ marginRight: '10px'}}>Register Your Shop</Link>
+      <Link to="/login" className=" btn btn-primary  d-inline-block">Login to view your existing shop</Link>
+      </div>
+    </div>
   );
 }
 
