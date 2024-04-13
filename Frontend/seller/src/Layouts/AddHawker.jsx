@@ -33,7 +33,7 @@ function AddHawker() {
         <h1>Partner With Hawker at 0% commission for the 1st month!</h1>
       </div>
       <div className="text-center"> {/* Encapsulating buttons in a div for text centering */}
-      <Link to="/hawkerregister" className="btn btn-primary  d-inline-block" style={{ marginRight: '15px'}}>Register Your Shop</Link>
+      <Link to="/hawkerregister" className="btn btn-primary  d-inline-block" style={{ marginRight: '10px'}}>Register Your Shop</Link>
       <Link to="/login" className=" btn btn-primary  d-inline-block">Login to view your existing shop</Link>
       </div>
     </div>
