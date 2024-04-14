@@ -22,9 +22,9 @@ const initDB= async ()=>{
     console.log("data was initialized");
 }
 
-<<<<<<< HEAD
+
 initDB();
-=======
+
 const initCutsomerDB = async()=>{
     await Customer.deleteMany({});
     await Customer.insertMany(initcustomerdata.customerData);
@@ -33,4 +33,4 @@ const initCutsomerDB = async()=>{
 
 initDB();
 initCutsomerDB();
->>>>>>> origin/main
+

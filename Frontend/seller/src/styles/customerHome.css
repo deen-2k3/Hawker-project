@@ -5,10 +5,14 @@
     transition: transform 0.2s;
 }
 .card:hover{
-    transform: scale(1.05);
+    transform: scale(.9);
 }
 .card-img-top{
     width:100%;
-    border-radius: 0 rem;
+    border-radius: 1rem !important;
     /* object-fit: cover !important; */
+}
+.title{
+    display: flex;
+    justify-content: space-between;
 }
