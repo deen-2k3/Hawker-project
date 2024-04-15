@@ -13,6 +13,7 @@ import Cart from './components/Cart.jsx';
 import CustomerHome from './components/CustomerHome.jsx';
 import AddHawkerHome from './pages/AddHawkerHome.jsx';
 import HawkerRegister from './pages/HawkerRegister.jsx';
+import Additems from './pages/Additems.jsx';
 
 
 
@@ -32,6 +33,8 @@ function App() {
     </Routes>
     
     </BrowserRouter>
+
+    {/* <Additems/> */}
 
     {/* <Cart/> */}
     {/* <CustomerHome/> */}
