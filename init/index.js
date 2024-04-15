@@ -4,6 +4,7 @@ const Seller=require("../models/seller.js");
 const initcustomerdata = require("./customerdata.js");
 const Customer = require("../models/customer.js");
 const dbUrl="mongodb://127.0.0.1:27017/hawker"
+const Cart = require("../models/cart.js");
 main()
 .then(()=>{
     console.log("connect to DB");
@@ -22,6 +23,11 @@ const initDB= async ()=>{
     console.log("data was initialized");
 }
 
+const initCartDB= async ()=>{
+    await Cart.deleteMany({});
+    await Cart.insertMany(initdata.data);
+    console.log("cart was initialized");
+}
 
 initDB();
 
@@ -31,6 +37,6 @@ const initCutsomerDB = async()=>{
     console.log("customer data was initialized");
 }
 
-initDB();
+initCartDB();
 initCutsomerDB();
 

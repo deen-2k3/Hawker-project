@@ -4,6 +4,7 @@ const Customer = require("../models/customer.js");
 const dbUrl="mongodb://127.0.0.1:27017/hawker"
 const router = express.Router();
 const Seller= require("../models/seller.js");
+const Cart = require("../models/cart.js");
 const cors = require("cors");
 main()
 .then(()=>{
@@ -31,6 +32,10 @@ router.get("/addCustomer", async(req,res)=>{
       console.log("sample customer was saved");
       res.send("sample customer was saved in database");
 });
+router.get("/cart", async(req, res)=>{
+    const allItems = await Cart.find({});
+    res.send(allItems);
+})
 
 router.get("/allitems")
 module.exports = router;
