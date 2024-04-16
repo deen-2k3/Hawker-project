@@ -4,7 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Login from './components/login.jsx';
+import Login from './components/Login.jsx';
 import Register from './components/Register.jsx'
 import {BrowserRouter,Routes,Route}  from 'react-router-dom'
 import Homenavbar from './components/Homenavbar.jsx';
@@ -22,7 +22,7 @@ function App() {
 
   return (
     <>
-    {/* <BrowserRouter>
+    <BrowserRouter>
     <Routes>
     <Route path='/' element={<Homenavbar/>}></Route>
     <Route path='/addhawkerhome' element={<AddHawkerHome/>}></Route>
@@ -32,12 +32,12 @@ function App() {
       <Route path='/cart' element={<Cart/>}></Route>
     </Routes>
     
-    </BrowserRouter> */}
+    </BrowserRouter>
 
     {/* <Additems/> */}
 
     {/* <Cart/> */}
-    <CustomerHome/>
+    {/* <CustomerHome/> */}
 
     </>
   )
