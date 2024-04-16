@@ -15,6 +15,7 @@ export default function CustomerHome() {
                     <div className="card col"  >
                     <img className="card-img-top" src={item.image} alt="Card image cap" style={{"height":"10rem"}}/>
                     <div className="card-body" style={{"padding":"0"}}>
+                    <div className='container' style={{'fontFamily':'serif'}}>
                       <p className="card-text">
                         {item.name} <br />
                         by- {item.title} <br />
@@ -23,6 +24,8 @@ export default function CustomerHome() {
                       </p>
                     </div>
                   </div>
+                  <hr/>
+                 </div>
                 ))}
                 </div>
         </>
