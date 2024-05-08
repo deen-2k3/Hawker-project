@@ -52,7 +52,7 @@ const sellerData = [
     {
         title: "Leafy Greens",
         name: "Lettuce",
-        image:"https://media.istockphoto.com/id/1473520403/photo/basil-close-up-photo.jpg?s=1024x1024&w=is&k=20&c=JBMROqePdkNB5jSeyeiA_kaf84LdNcZBA1zBQ6d-hfs=",
+        image:"https://images.unsplash.com/photo-1519897831810-a9a01aceccd1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8TGV0dHVjZXxlbnwwfHwwfHx8MA%3D%3D",
         quantity: 25,
         description: "Crisp and refreshing lettuce leaves for salads and wraps",
         price: 40,
@@ -62,7 +62,7 @@ const sellerData = [
     {
         title: "Cruciferous Vegetables",
         name: "Broccoli",
-        image:"https://media.istockphoto.com/id/1473520403/photo/basil-close-up-photo.jpg?s=1024x1024&w=is&k=20&c=JBMROqePdkNB5jSeyeiA_kaf84LdNcZBA1zBQ6d-hfs=",
+        image:"https://images.unsplash.com/photo-1587351177732-5b0739d1bd44?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGJyb2Njb2xpfGVufDB8fDB8fHww",
         quantity: 35,
         description: "Nutrient-rich broccoli florets packed with vitamins",
         price: 30,
@@ -72,7 +72,7 @@ const sellerData = [
     {
         title: "Allium Vegetables",
         name: "Garlic",
-        image:"https://media.istockphoto.com/id/1473520403/photo/basil-close-up-photo.jpg?s=1024x1024&w=is&k=20&c=JBMROqePdkNB5jSeyeiA_kaf84LdNcZBA1zBQ6d-hfs=",
+        image:"https://images.unsplash.com/photo-1615477550927-6ec8445fcfe6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fEdhcmxpY3xlbnwwfHwwfHx8MA%3D%3D",
         quantity: 20,
         description: "Flavorful garlic bulbs known for their culinary and medicinal properties",
         price: 20,
@@ -82,7 +82,7 @@ const sellerData = [
     {
         title: "Fresh Peppers",
         name: "Bell Peppers",
-        image:"https://media.istockphoto.com/id/1473520403/photo/basil-close-up-photo.jpg?s=1024x1024&w=is&k=20&c=JBMROqePdkNB5jSeyeiA_kaf84LdNcZBA1zBQ6d-hfs=",
+        image:"https://images.unsplash.com/photo-1585159079680-8dec029b76ed?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fEJlbGwlMjBQZXBwZXJzfGVufDB8fDB8fHww",
         quantity: 30,
         description: "Colorful bell peppers with a sweet and tangy flavor",
         price: 45,
@@ -92,7 +92,7 @@ const sellerData = [
     {
         title: "Root Vegetables",
         name: "Potatoes",
-        image:"https://media.istockphoto.com/id/1473520403/photo/basil-close-up-photo.jpg?s=1024x1024&w=is&k=20&c=JBMROqePdkNB5jSeyeiA_kaf84LdNcZBA1zBQ6d-hfs=",
+        image:"https://images.unsplash.com/photo-1508313880080-c4bef0730395?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8UG90YXRvZXN8ZW58MHx8MHx8fDA%3D",
         quantity: 10,
         description: "Versatile potatoes suitable for a variety of dishes",
         price: 18,

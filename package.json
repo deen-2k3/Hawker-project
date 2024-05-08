@@ -2,7 +2,7 @@
   "name": "hawker-project",
   "version": "1.0.0",
   "description": "project description",
-  "main": "index.js",
+  "main": "app.js",
   "dependencies": {
     "accepts": "^1.3.8",
     "array-flatten": "^1.1.1",
@@ -13,6 +13,8 @@
     "content-type": "^1.0.5",
     "cookie": "^0.6.0",
     "cookie-signature": "^1.0.6",
+    "cors": "^2.8.5",
+    "cros": "^1.0.1",
     "debug": "^2.6.9",
     "define-data-property": "^1.1.4",
     "depd": "^2.0.0",
