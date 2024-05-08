@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Login from './components/Login.jsx';
@@ -14,6 +13,7 @@ import CustomerHome from './components/CustomerHome.jsx';
 import AddHawkerHome from './pages/AddHawkerHome.jsx';
 import HawkerRegister from './pages/HawkerRegister.jsx';
 import Additems from './pages/Additems.jsx';
+import HawkerHomenavbar from './components/HawkerHomenavbar.jsx';
 
 
 
@@ -33,6 +33,17 @@ function App() {
     </Routes>
     
     </BrowserRouter>
+    {/* <BrowserRouter>
+    <Routes>
+
+    <Route path="/" element={<HawkerHomenavbar/>}>
+        </Route>
+
+    <Route path='/additems' element={<Additems/>}></Route>
+     </Routes>
+    
+    </BrowserRouter> */}
+    {/* <HawkerHome/> */}
 
     {/* <Additems/> */}
 
