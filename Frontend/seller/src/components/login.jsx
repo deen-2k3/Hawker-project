@@ -13,8 +13,8 @@ function Login(){
     axios.post('http://localhost:8080/login',{email,password})
     .then(result=>{
       console.log(result)
-      if(result==="Success"){
-        navigate('/home')
+      if(result.data==="Success"){
+        navigate('/')
       }
     })
   }
