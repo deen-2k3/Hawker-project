@@ -1,0 +1,27 @@
+.show_card{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 40px;
+}
+.image{
+    height:450px;
+    width:550px;
+    border-radius: 1rem;
+}
+.about{
+    /* height:450px; */
+    font-family: sans-serif;
+    width:500px;
+    border-radius: 1rem;
+}
+.buttons{
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+}
+.button1{
+    margin-right:10px;
+}
+.button2{
+    margin-left: 10px;
+}

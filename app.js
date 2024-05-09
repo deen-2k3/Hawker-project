@@ -4,8 +4,8 @@ const port = 8080;
 const mongoose = require('mongoose');
 const Seller= require("./models/seller.js");
 const sellerApp=require("./sellerapp.js");
-
-const dbUrl="mongodb://127.0.0.1:27017/hawker"
+const customer = require("./routes/customer.js");
+const dbUrl="mongodb://127.0.0.1:27017/hawker";
 main()
 .then(()=>{
     console.log("connect to DB");
@@ -24,7 +24,7 @@ app.get("/", (req, res)=>{
 
 });
 
-
+app.use("/customer", customer);
 app.use(sellerApp);
 
     
