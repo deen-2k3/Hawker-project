@@ -14,13 +14,21 @@ export default function Cart(){
     }
     const incAmount =(id)=>{
         setItems(prevItems=>{
-            return prevItems.map((item)=>{
+            const updatedItem= prevItems.map((item)=>{
                 if(id===item.id){
                     return {...item, amount:item.amount+1}
                 }
                 return item;
+            });
+            axios.put(`http://localhost:8080/customer/cart/${id}`, updatedItem)
+            .then(res=>{
+                console.log(res);
             })
-        }
+            .catch(err=>{
+                console.log(err);
+            })
+            return updatedItem;
+        } 
         )
     }
     const decAmount = (id)=>{
@@ -35,12 +43,17 @@ export default function Cart(){
     }
     const deleteCart = (id)=>{
         setItems(prevItems=>{
-            prevItems.filter(item => item.id!=id);
+            return prevItems.filter(item => item.id!=id);
         })
     }
     
     useEffect(()=>{
-        setItems(vegetablesData);
+        const fetchdata = async()=>{
+            const data = await fetch("http://localhost:8080/customer/cart");
+            const jsonData = await data.json();
+            setItems(jsonData);
+        }
+        fetchdata();
     }, []);
 
     useEffect(()=>{
@@ -49,10 +62,10 @@ export default function Cart(){
 
     return (
     <>
-    <Homenavbar/>
+    {/* <Homenavbar/> */}
         <div className="cart">
             {items.map((item)=>(
-                <div className="cart_box">
+                <div className="cart_box" key={item.id}>
                 <div className="cartImage">
                     <img src={item.image} alt={item.Name} />
                     <p>{item.name}</p>
@@ -60,11 +73,11 @@ export default function Cart(){
                 </div>
                 <div className="amount_btn">
                     <button onClick={()=>decAmount(item.id)}>-</button>
-                    {item.amount}
+                    {item.quantity}
                     <button onClick={()=>incAmount(item.id)}>+</button>
                 </div>
                 <div className="checkout_sec">
-                    <span>Rs-{item.price*item.amount}</span>
+                    <span>Rs-{item.price*item.quantity}</span>
                     <button onClick={()=>deleteCart(item.id)}>Remove</button>
                 </div>
             </div>
