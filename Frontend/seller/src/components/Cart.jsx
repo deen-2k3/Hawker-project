@@ -2,44 +2,66 @@ import React, { useEffect, useState } from "react";
 import vegetablesData from '../Data/cartData';
 import '../styles/cart.css';
 import Homenavbar from './Homenavbar.jsx'
+import axios from 'axios';
 export default function Cart(){
     const [items, setItems] = useState([]);
     const[price, setPrice] = useState(0);
     const handlePrice = ()=>{
         let ans=0;
         items.map((item)=>{
-            ans+=item.price*item.amount;
+            ans+=item.price*item.quantity;
         })
         setPrice(ans);
     }
     const incAmount =(id)=>{
-        setItems(prevItems=>{
-            const updatedItem= prevItems.map((item)=>{
-                if(id===item.id){
-                    return {...item, amount:item.amount+1}
-                }
-                return item;
-            });
-            axios.put(`http://localhost:8080/customer/cart/${id}`, updatedItem)
-            .then(res=>{
-                console.log(res);
-            })
-            .catch(err=>{
+        // setItems(prevItems=>{
+        //     return prevItems.map((item)=>{
+        //         if(id==item.id){
+        //             return {...item, amount:item.amount+1}
+        //         }
+        //         return item;
+        //     })
+        // })
+        const fetchItem = async()=>{
+            try{
+                const data = await fetch(`http://localhost:8080/customer/cart/${id}`);
+                const jsondata = await data.json();
+                {jsondata.quantity += 1};
+                await axios.put(`http://localhost:8080/customer/cart/${id}`, jsondata)
+                .then(res=>{
+                    console.log(res);
+                })
+                .catch(err=>{
+                    console.log(err);
+                })
+
+            }
+            catch(err){
                 console.log(err);
-            })
-            return updatedItem;
-        } 
-        )
+            }
+        }
+        fetchItem();    
     }
-    const decAmount = (id)=>{
-        setItems(prevItems=>{
-            return prevItems.map((item)=>{
-                if(id==item.id){
-                    return {...item, amount:item.amount-1}
+    const decAmount = async(id)=>{
+        // setItems(prevItems=>{
+        //     return prevItems.map((item)=>{
+        //         if(id==item.id){
+        //             return {...item, amount:item.amount-1}
+        //         }
+        //         return item;
+        //     })
+        // })
+        try{
+            const fetchItem = await axios.get(`http://localhost:8080/customer/cart/${id}`);
+            const item = fetchItem.data;
+                if(item.quantity>0){
+                    item.quantity =item.quantity -1;
                 }
-                return item;
-            })
-        })
+            await axios.put(`http://localhost:8080/customer/cart/${id}`, item);
+        }
+        catch(err){
+            console.log(err);
+        }
     }
     const deleteCart = (id)=>{
         setItems(prevItems=>{
@@ -54,11 +76,13 @@ export default function Cart(){
             setItems(jsonData);
         }
         fetchdata();
-    }, []);
+    }, [items]);
+
+
 
     useEffect(()=>{
         handlePrice();
-    }, []);
+    }, [items]);
 
     return (
     <>
@@ -72,9 +96,9 @@ export default function Cart(){
                     {/* <p>Image desciption</p> */}
                 </div>
                 <div className="amount_btn">
-                    <button onClick={()=>decAmount(item.id)}>-</button>
+                    <button onClick={()=>decAmount(item._id)}>-</button>
                     {item.quantity}
-                    <button onClick={()=>incAmount(item.id)}>+</button>
+                    <button onClick={()=>incAmount(item._id)}>+</button>
                 </div>
                 <div className="checkout_sec">
                     <span>Rs-{item.price*item.quantity}</span>

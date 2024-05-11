@@ -4,7 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Login from './components/Login.jsx';
+import Login from './components/login.jsx';
 import Register from './components/Register.jsx'
 import {BrowserRouter,Routes,Route}  from 'react-router-dom'
 import Homenavbar from './components/Homenavbar.jsx';

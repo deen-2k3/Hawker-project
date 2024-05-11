@@ -9,6 +9,8 @@ const cors = require("cors");
 const axios = require('axios');
 router.use(cors());
 router.use(express.urlencoded({extended:true}));
+router.use(express.json());
+
 // router.use(bodyParser.json());
 main()
 .then(()=>{
@@ -44,10 +46,19 @@ router.get("/cart", async(req, res)=>{
     const cart = await Cart.find({});
     res.send(cart);
 });
+
+router.get("/cart/:id", async(req, res)=>{
+    let {id} = req.params;
+    const data = await Cart.findById(id);
+    console.log("fetch item is", data);
+    res.send(data);
+})
 router.put("/cart/:id", async(req, res)=>{
     let {id} = req.params;
     const updatedItem = req.body;
+    console.log("req.body is", updatedItem);
     await Cart.findByIdAndUpdate(id, updatedItem, {new:true});
+    console.log(updatedItem);
     res.json(updatedItem);
 })
 

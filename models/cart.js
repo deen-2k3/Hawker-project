@@ -11,7 +11,7 @@ const cartSchema = new Schema({
         required:true
     },
     quantity:{
-        type:String,
+        type:Number,
         required:true
     },
     image:{
