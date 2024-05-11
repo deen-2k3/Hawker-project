@@ -1,0 +1,35 @@
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Align cards in the center horizontally */
+  gap: 20px; /* Space between cards */
+}
+.card {
+    width: 300px; /* Adjust width as needed */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px;
+    display: flex;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card img {
+    width: 100%; /* Make image fill container width */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 8px;
+    margin-bottom: 10px; /* Space between image and text */
+  }
+  
+  .card h2 {
+    font-size: 1.5rem; /* Adjust heading font size */
+    margin-bottom: 10px; /* Space between heading and description */
+  }
+  
+  .card p {
+    font-size: 1rem; /* Adjust paragraph font size */
+    line-height: 1.4; /* Adjust line height */
+    color: #333; /* Text color */
+    margin-bottom: 5px; /* Space between paragraphs */
+  }
+  
