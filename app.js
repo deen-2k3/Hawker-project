@@ -4,10 +4,8 @@ const port = 8080;
 const mongoose = require('mongoose');
 const Seller= require("./models/seller.js");
 const sellerApp=require("./sellerapp.js");
-<<<<<<< HEAD
 const customer = require("./routes/customer.js");
 const dbUrl="mongodb://127.0.0.1:27017/hawker";
-=======
 const cors = require("cors");
 const UserModel = require("./models/User.js");
 
@@ -17,8 +15,6 @@ const UserModel = require("./models/User.js");
 app.use(express.json());
 app.use(cors());
 
-const dbUrl="mongodb://127.0.0.1:27017/hawker"
->>>>>>> cea065c46d92c8c5d2d518b75fd7593dd93f40f6
 main()
 .then(()=>{
     console.log("connect to DB");
@@ -71,5 +67,5 @@ app.use(sellerApp);
 
 
 app.listen(port, ()=>{
-    console.log(`app is listening on port ${port}`);
+    console.log(`app is   listening on port ${port}`);
 });
