@@ -4,6 +4,7 @@ const port = 8080;
 const mongoose = require('mongoose');
 const Seller= require("./models/seller.js");
 const sellerApp=require("./sellerapp.js");
+const customer = require("./routes/customer.js");
 const cors = require("cors");
 const UserModel = require("./models/User.js");
 
@@ -55,7 +56,7 @@ app.get("/", (req, res)=>{
 
 });
 
-
+app.use("/customer", customer);
 app.use(sellerApp);
 
     
