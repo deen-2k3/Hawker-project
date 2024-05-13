@@ -6,9 +6,8 @@ const Seller= require("./models/seller.js");
 const sellerApp=require("./sellerapp.js");
 const cors = require("cors");
 const UserModel = require("./models/User.js");
-
-
-
+const Addvegetable=require("./models/Additems.js")
+const seller=require("./routes/seller.js")
 
 app.use(express.json());
 app.use(cors());
@@ -48,6 +47,20 @@ app.post('/signup', (req, res) => {
     .then(employees => res.json(employees))
     .catch(err => res.status(400).json({ error: err.message }));
 });
+// /////////////////////////////////////////////////
+app.post('/additem', (req, res) => {
+  Addvegetable.create(req.body)
+    .then(newItem => {
+      console.log(newItem); // Log the new item to the console
+      res.json(newItem); // Send the new item as a response
+    })
+    .catch(err => {
+      console.error(err); // Log the error to the console
+      res.status(400).json({ error: err.message });
+    });
+});
+
+////////////////////////////////////////////////////////
 
 
 app.get("/", (req, res)=>{
@@ -55,6 +68,7 @@ app.get("/", (req, res)=>{
 
 });
 
+app.use('/newhawker', seller);
 
 app.use(sellerApp);
 
