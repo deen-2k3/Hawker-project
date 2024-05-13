@@ -58,6 +58,18 @@ router.put("/cart/:id", async(req, res)=>{
     await Cart.findByIdAndUpdate(id, updatedItem, {new:true});
     console.log(updatedItem);
     res.json(updatedItem);
+});
+router.delete("/cart/:id", async(req, res)=>{
+    let {id} = req.params;
+    const data = await Cart.findByIdAndDelete(id);
+    console.log("Item deleted");
+    res.send(data);
+})
+router.post("/cart/addItem", async(req, res)=>{
+    const item = req.body;
+    const newItem = new Cart(item);
+    await newItem.save();
+    res.send(item);
 })
 
 module.exports = router;

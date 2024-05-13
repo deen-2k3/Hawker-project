@@ -9,7 +9,7 @@ export default function Cart(){
     const handlePrice = ()=>{
         let ans=0;
         items.map((item)=>{
-            ans+=item.price*item.amount;
+            ans+=item.price*item.quantity;
         })
         setPrice(ans);
     }
@@ -63,10 +63,16 @@ export default function Cart(){
             console.log(err);
         }
     }
-    const deleteCart = (id)=>{
-        setItems(prevItems=>{
-            prevItems.filter(item => item.id!=id);
-        })
+    const deleteCart = async(id)=>{
+        // setItems(prevItems=>{
+        //     prevItems.filter(item => item.id!=id);
+        // })
+        try{
+            await axios.delete(`http://localhost:8080/customer/cart/${id}`);
+        }
+        catch(err){
+            console.log(err);
+        }
     }
     
     useEffect(()=>{
@@ -100,7 +106,7 @@ export default function Cart(){
                 </div>
                 <div className="checkout_sec">
                     <span>Rs-{item.price*item.quantity}</span>
-                    <button onClick={()=>deleteCart(item.id)}>Remove</button>
+                    <button onClick={()=>deleteCart(item._id)}>Remove</button>
                 </div>
             </div>
             ))}
