@@ -4,7 +4,7 @@ const port = 8080;
 const mongoose = require('mongoose');
 const Seller= require("./models/seller.js");
 const sellerApp=require("./sellerapp.js");
-const customer = require("./routes/customer.js");
+// const customer = require("./routes/customer.js");
 const cors = require("cors");
 const UserModel = require("./models/User.js");
 const Addvegetable=require("./models/Additems.js")
@@ -73,9 +73,9 @@ app.get("/", (req, res)=>{
 app.use('/newhawker', seller);
 
 
-app.use("/customer", customer);
+// app.use("/customer", customer);
 
-app.use(sellerApp);
+// app.use(sellerApp);
 
     
     // res.send(allSellers);
