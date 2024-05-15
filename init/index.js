@@ -20,7 +20,7 @@ async function main() {
 }
 
 // <<<<<<< customer-app
-const initDB= async ()=>{
+// const initDB= async ()=>{
 // =======
 
 const initDB = async () => {
