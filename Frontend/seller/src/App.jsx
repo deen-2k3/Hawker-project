@@ -15,7 +15,7 @@ import HawkerRegister from './pages/HawkerRegister.jsx';
 import Additems from './pages/Additems.jsx';
 import HawkerHomenavbar from './components/HawkerHomenavbar.jsx';
 import CustomerShowCard from './components/CustomerShowCard.jsx';
-
+import OrderHistory from './components/OrderHistory.jsx';
 
 function App() {
   
@@ -32,6 +32,7 @@ function App() {
       <Route path='/cart' element={<Cart/>}></Route>
       <Route path='/customerHome' element={<CustomerHome/>}></Route>
       <Route path='/customerShowCard/:id' element={<CustomerShowCard/>}></Route>
+      <Route path='/orderHistory' element={<OrderHistory/>}></Route>
     </Routes>
     
     </BrowserRouter>

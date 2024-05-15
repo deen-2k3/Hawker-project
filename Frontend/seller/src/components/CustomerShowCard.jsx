@@ -17,7 +17,7 @@ export default function CustomerShowCard() {
   })
   const addToCart= async()=>{
     try{
-        await axios.post("http://localhost:8080/customer/cart/addItem", item);
+        await axios.post("http://localhost:8080/customer/cart/addToCart", item);
         console.log("item is saved");
     }
     catch(err){
@@ -54,7 +54,7 @@ export default function CustomerShowCard() {
                         <h5 style={{"marginTop":"20px"}}> <b>RS- {item.price}/Kg</b></h5>
                         <div className="buttons">
                     <button className="btn btn-outline-success button1" onClick={()=>addToCart()}>Add to cart</button>
-                    <button className="btn btn-outline-success button2" >Buy now</button>
+                    <button className="btn btn-outline-success button2" >Buy</button>
                 </div>
                     </div>
 
