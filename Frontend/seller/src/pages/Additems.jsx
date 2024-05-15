@@ -10,12 +10,13 @@ export default function Additems() {
   const [image,SetImage]=useState()
 
   const handleSubmit=(e)=>{
-    e.peventDefault();
-    axios.post('http://localhost:8080/additems',{vegName,quantity,price,image})
+    e.preventDefault();
+    axios.post('http://localhost:8080/additem',{vegName,quantity,price,image})
     .then(result=>{
       console.log(result)
-      .catch(err=>console.log(err));
+      
     })
+    .catch(err=>console.log(err));
   }
 
   return (
@@ -40,7 +41,7 @@ export default function Additems() {
         </div>
         <div className="vegeimage">
           <label htmlFor="exampleFormControlFile1">Vegetable Image</label>
-          <input type="file" className="vegeimagediv" id="exampleFormControlFile1" 
+          <input type="url" className="vegeimagediv" id="exampleFormControlFile1" 
           onChange={(e)=>SetImage(e.target.value)}/>
         </div>
         <button type="submit" className="btnn">Submit</button>
