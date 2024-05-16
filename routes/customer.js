@@ -2,6 +2,7 @@ const express= require("express");
 const mongoose = require("mongoose");
 const Customer = require("../models/customer.js");
 const Cart = require("../models/cart.js");
+const OrderHistory = require("../models/orderHistory");
 const dbUrl="mongodb://127.0.0.1:27017/hawker"
 const router = express.Router();
 const Seller= require("../models/seller.js");
@@ -58,6 +59,22 @@ router.put("/cart/:id", async(req, res)=>{
     await Cart.findByIdAndUpdate(id, updatedItem, {new:true});
     console.log(updatedItem);
     res.json(updatedItem);
+});
+router.delete("/cart/:id", async(req, res)=>{
+    let {id} = req.params;
+    const data = await Cart.findByIdAndDelete(id);
+    console.log("Item deleted");
+    res.send(data);
+})
+router.post("/cart/addToCart", async(req, res)=>{
+    const item = req.body;
+    const newItem = new Cart(item);
+    await newItem.save();
+    res.send(item);
+})
+router.get("/orderHistory", async(req, res)=>{
+    const orderHistory = await OrderHistory.find({});
+    res.send(orderHistory);
 })
 
 module.exports = router;
