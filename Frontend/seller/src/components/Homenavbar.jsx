@@ -17,8 +17,8 @@ function Homenavbar() {
             <Link to="/login" className="nav-link">Login</Link>
             <Link to="/register" className="nav-link">Signup</Link>
             <Link to ="/cart" className="nav-link cart-icon"><FontAwesomeIcon icon={faCartShopping} /></Link>
-            {/* <Link to ="/customerHome" className="nav-link cart-icon">Customer Home</Link>
-            <Link to ="/orderHistory" className="nav-link cart-icon">order History</Link> */}
+            <Link to ="/customerHome" className="nav-link cart-icon">Customer Home</Link>
+            <Link to ="/orderHistory" className="nav-link cart-icon">order History</Link>
           </Nav>
         </Container>
       </Navbar>

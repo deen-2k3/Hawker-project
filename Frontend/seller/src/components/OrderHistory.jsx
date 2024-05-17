@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/OrderHistory.css';
 
-const OrderHistory = () => {
+export default function OrderHistory(){
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
@@ -19,25 +19,29 @@ const OrderHistory = () => {
   }, [orders]);
 
   return (
-    <div className="order-history">
-      <h1>Order History</h1>
-      <div className="orders">
-        {orders.map(order => (
-          <div key={order._id} className="order-item">
-            <img src={"https://images.unsplash.com/photo-1582284540020-8acbe03f4924?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} alt={order.title} className="order-image" />
-            <div className="order-details">
-              <h2>{order.title}</h2>
-              <p><strong>Name:</strong> {order.name}</p>
-              <p><strong>Quantity:</strong> {order.quantity}</p>
-              <p><strong>Price:</strong> RS-{order.price}</p>
-              {order.location && <p><strong>Location:</strong> {order.location}</p>}
-              {order.country && <p><strong>Country:</strong> {order.country}</p>}
+    <>
+    {/* <Homenavbar/> */}
+        <div className="container">
+            {orders.map((order)=>(
+                <div className="order" key={order._id}>
+                <div className="orderImage">
+                    <img src={order.image} alt={order.name} />
+                    <p>{order.name}</p>
+                    {/* <p>Image desciption</p> */}
+                </div>
+                <div className="amount_btn">
+                    <button>-</button>
+                    {order.quantity}
+                    <button >+</button>
+                </div>
+                <div className="checkout_sec">
+                    {/* <span>Rs-{item.price*item.quantity}</span> */}
+                    {/* <button onClick={()=>deleteCart(item._id)}>Remove</button> */}
+                </div>
             </div>
-          </div>
-        ))}
-      </div>
-    </div>
+            ))}
+        </div>
+        </>
   );
 };
 
-export default OrderHistory;
