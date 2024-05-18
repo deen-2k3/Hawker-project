@@ -31,7 +31,7 @@ function App() {
       <Route path='/customerShowCard/:id' element={<CustomerShowCard/>}></Route>
       <Route path='/orderHistory' element={<OrderHistory/>}></Route>
     </Routes>
-      <Routes>
+      {/* <Routes>
         <Route path="/" element={<Homenavbar />} />
         <Route path="/addhawkerhome" element={<AddHawkerHome />} />
         <Route
@@ -44,15 +44,15 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/customerHome" element={<CustomerHome />} />
         <Route path="/additems" element={<Additems />} />
-        <Route path="/customerShowCard/:id" element={<CustomerShowCard />} />
+        <Route path="/customerShowCard/:id" element={<CustomerShowCard />} /> */}
         {/* Wrap the protected route with ProtectedRoute */}
-        <Route
+        {/* <Route
           path="/hawkerhome"
           element={<HawkerHomenavbar />}
           isAuthenticated={isAuthenticated}
         />
         <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
+      </Routes> */}
     </BrowserRouter>
   );
 }

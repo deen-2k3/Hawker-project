@@ -20,13 +20,18 @@ export default function OrderHistory(){
 
   return (
     <>
-    {/* <Homenavbar/> */}
+    <h1 style={{"textAlign":"center"}}>Order History</h1>
         <div className="container">
             {orders.map((order)=>(
                 <div className="order" key={order._id}>
                 <div className="orderImage">
                     <img src={order.image} alt={order.name} />
-                    <p>{order.name}</p>
+                    <div className='row1'>
+                    {order.name}
+                    </div>
+                    <div className='row1'>
+                    {order.title}
+                    </div>
                     {/* <p>Image desciption</p> */}
                 </div>
                 <div className="amount_btn">
