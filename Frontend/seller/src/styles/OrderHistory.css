@@ -27,7 +27,7 @@ width:400px;
 .order{
   display:flex;
   /* align-items:center; */
-  justify-content: flex-start;
+  justify-content: space-between;
   margin-top:25px;
   /* padding:10px 10px 10px 10px; */
   transition: background-color 0.5s ease, color 0.5s ease;
@@ -60,10 +60,15 @@ width:400px;
   margin-left: 80px;
 }
 .delete{
-  margin-left: 80px;
+  margin-left: 40px;
+  margin-right: 10px;
   font-size: 20px;
   font-weight: bold;
   margin-top: 40px;
+}
+.btn{
+  height: 40px;
+  width: 120px;
 }
 /* .amount_btn button{
   padding:5px 10px;

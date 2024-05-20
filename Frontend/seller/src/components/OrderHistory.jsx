@@ -1,9 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/OrderHistory.css';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
 export default function OrderHistory() {
   const [orders, setOrders] = useState([]);
 
+  const deleteHistory = async(id)=>{
+    try{
+      await axios.delete(`http://localhost:8080/customer/orderHistory/${id}`);
+    }
+    catch(err){
+      console.log(err);
+    }
+  }
   useEffect(() => {
     const fetchItems = async () => {
       try {
@@ -49,11 +59,11 @@ export default function OrderHistory() {
               </div>
               <div className='row2'>
                 on-
-                {19/5/2024} at 8:16 PM
+                {new Date(order.createdAt).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}
               </div>
             </div>
             <div className='delete'>
-              delete
+            <button className="btn btn-outline-danger" onClick={()=>deleteHistory(order._id)}>Remove <FontAwesomeIcon icon={faTrash} /></button>
             </div>
             {/* <div className="checkout_sec"> */}
             {/* <span>Rs-{item.price*item.quantity}</span> */}
@@ -61,6 +71,8 @@ export default function OrderHistory() {
             {/* </div> */}
           </div>
         ))}
+        &nbsp;
+        &nbsp;
       </div>
     </>
   );
