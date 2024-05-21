@@ -20,6 +20,10 @@ const orderHistorySchema = new Schema({
        default:"https://unsplash.com/photos/five-tomatoes-in-round-brown-wooden-platet-EPwuZxdketc",
         set:(v)=> v==="" ? "https://unsplash.com/photos/five-tomatoes-in-round-brown-wooden-platet-EPwuZxdketc":v
    },
+   createdAt:{
+    type:Date,
+    default:Date.now,
+   },
    description:{
     type:String,
     required:true

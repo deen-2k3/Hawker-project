@@ -4,12 +4,13 @@
 }
 
 .cart{
-    width:60%;
+    width:70%;
     margin:auto;
 }
 .cart_box img{
-    width:100px;
-    height:70px;
+    width:150px;
+    height:80px;
+    border-radius: 10px;
 }
 .cartImage{
 display: flex;
@@ -18,12 +19,14 @@ width:400px;
 .cartImage p{
     font-weight:bold;
     margin-left:20px;
+    margin-top:10px;
 }
 .cart_box{
     display:flex;
     align-items:center;
     justify-content:space-between;
     margin-top:25px;
+    margin-bottom:25px;
     border-bottom: 2px solid black;
     padding-bottom:10px;
 }
@@ -53,6 +56,8 @@ width:400px;
 .total{
     display: flex;
     justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 .total_des{
     font-weight: bold;

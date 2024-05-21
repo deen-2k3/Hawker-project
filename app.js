@@ -3,11 +3,13 @@ const app = express();
 const port = 8080;
 const mongoose = require('mongoose');
 const cors = require("cors");
+const Customer = require("./models/customer.js");
 
 // Import models
 const UserModel = require("./models/User");
 const Addvegetable = require("./models/Additems");
 
+const customer = require("./routes/customer");
 // Import routes
 const sellerRouter = require("./routes/seller");
 const vegetableRouter = require('./routes/sellercard');
@@ -70,6 +72,7 @@ app.get("/", (req, res) => {
     res.send("This is the home route");
 });
 
+app.use('/customer', customer);
 // Use the routers
 app.use('/newhawker', sellerRouter);
 app.use('/scard/vegetables', vegetableRouter);

@@ -76,7 +76,11 @@ router.get("/orderHistory", async(req, res)=>{
     const orderHistory = await OrderHistory.find({});
     res.send(orderHistory);
 })
-
+router.delete("/orderHistory/:id", async(req, res)=>{
+    let {id} = req.params;
+    const data = await OrderHistory.findByIdAndDelete(id);
+    res.send(data);
+})
 module.exports = router;
 
 module.exports = router;
