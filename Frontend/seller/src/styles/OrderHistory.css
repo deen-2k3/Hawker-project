@@ -49,15 +49,18 @@ width:400px;
   font-weight: bold;
   margin-bottom: 10px;
   margin-top: 40px;
+  width: 200px;
 }
 .row2{
   font-size: 15px;
   font-weight: 500;
   font-style: italic;
   font-family: cursive;
+  width: 200px;
 }
 .details{
   margin-left: 80px;
+  width: 300px;
 }
 .delete{
   margin-left: 40px;
