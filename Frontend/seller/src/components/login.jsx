@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-function Login({ setIsAuthenticated }) {
+function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -14,8 +14,8 @@ function Login({ setIsAuthenticated }) {
       .then(result => {
         console.log(result);
         if (result.data === "Success") {
-          setIsAuthenticated(true);
-          navigate('/hawkerhome'); // Navigate to the protected route
+          
+          navigate('/'); // Navigate to the protected route
         }
       })
       .catch(error => {

@@ -3,7 +3,10 @@ const app = express();
 const port = 8080;
 const mongoose = require('mongoose');
 const cors = require("cors");
+const bcrypt = require('bcrypt');
 const Customer = require("./models/customer.js");
+
+const saltRounds = 10;
 
 // Import models
 const UserModel = require("./models/User");
@@ -39,21 +42,30 @@ app.post('/login', (req, res) => {
     UserModel.findOne({ email: email })
         .then(user => {
             if (user) {
-                if (user.password === password) {
-                    res.json("Success");
-                } else {
-                    res.json("The password is incorrect");
-                }
+                bcrypt.compare(password, user.password, (err, result) => {
+                    if (result) {
+                        res.json("Success");
+                    } else {
+                        res.json("The password is incorrect");
+                    }
+                });
             } else {
                 res.json("No record existed");
             }
-        });
+        })
+        .catch(err => res.status(500).json({ error: err.message }));
 });
 
 app.post('/signup', (req, res) => {
-    UserModel.create(req.body)
-        .then(user => res.json(user))
-        .catch(err => res.status(400).json({ error: err.message }));
+    const { email, password } = req.body;
+    bcrypt.hash(password, saltRounds, (err, hash) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        UserModel.create({ email, password: hash })
+            .then(user => res.json(user))
+            .catch(err => res.status(400).json({ error: err.message }));
+    });
 });
 
 app.post('/additem', (req, res) => {
