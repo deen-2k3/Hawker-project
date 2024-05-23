@@ -21,23 +21,24 @@ function App() {
       <Routes>
         <Route path="/" element={<Homenavbar />} />
         <Route path="/addhawkerhome" element={<AddHawkerHome />} />
-        <Route
-  path="/hawkerregister"
-  element={isAuthenticated ? <HawkerRegister/> : <Navigate to="/login" />}
-/>
         <Route path="/hawkerregister" element={<HawkerRegister />} />
         <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
         <Route path="/register" element={<Register />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/customerHome" element={<CustomerHome />} />
         <Route path="/additems" element={<Additems />} />
-        {/* <Route path="/customerShowCard/:id" element={<CustomerShowCard />} /> */}
-        {/* Wrap the protected route with ProtectedRoute */}
+
+        {/* Protecting routes that require authentication */}
         <Route
           path="/hawkerhome"
-          element={<HawkerHomenavbar />}
-          isAuthenticated={isAuthenticated}
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <HawkerHomenavbar />
+            </ProtectedRoute>
+          }
         />
+
+        {/* Redirect to home for any unknown route */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
