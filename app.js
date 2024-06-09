@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 const cors = require("cors");
 const bcrypt = require('bcrypt');
 const Customer = require("./models/customer.js");
+const jwt =require('jsonwebtoken')
+const cookieParser= require('cookie-parser')
 
 const saltRounds = 10;
 
@@ -19,7 +21,12 @@ const vegetableRouter = require('./routes/sellercard');
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin:["http://localhost:5173"],
+    methods: ["GET","POST"],
+    credentials: true
+}));
+app.use(cookieParser());
 
 // MongoDB connection
 const dbUrl = "mongodb://127.0.0.1:27017/hawker";
@@ -44,6 +51,8 @@ app.post('/login', (req, res) => {
             if (user) {
                 bcrypt.compare(password, user.password, (err, result) => {
                     if (result) {
+                        const token=jwt.sign({email:user.email},"jwt-secret-key",{expiresIn:"1d"})
+                        res.cookie("token",token);
                         res.json("Success");
                     } else {
                         res.json("The password is incorrect");
