@@ -14,22 +14,22 @@ import HawkerHomenavbar from './components/HawkerHomenavbar.jsx';
 import CustomerShowCard from './components/CustomerShowCard.jsx';
 import OrderHistory from './components/OrderHistory.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
-
+import Home from './Layouts/Home.jsx';
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   return (
     <BrowserRouter>
     <Routes>
-    <Route path='/' element={<Homenavbar/>}></Route>
+    <Route path='/' element={<Home/>}></Route>
     <Route path='/addhawkerhome' element={<AddHawkerHome/>}></Route>
     <Route path='/hawkerregister' element={<HawkerRegister/>}></Route>
       <Route path='/login' element={<Login/>}></Route>
       <Route path='/register' element={<Register/>}></Route>
       <Route path='/cart' element={<Cart/>}></Route>
-      <Route path='/customerHome' element={<CustomerHome/>}></Route>
-      <Route path='/customerShowCard/:id' element={<CustomerShowCard/>}></Route>
-      <Route path='/orderHistory' element={<OrderHistory/>}></Route>
+      {/* <Route path='/customerHome' element={<CustomerHome/>}></Route> */}
+      {/* <Route path='/customerShowCard/:id' element={<CustomerShowCard/>}></Route> */}
+      {/* <Route path='/orderHistory' element={<OrderHistory/>}></Route> */}
     </Routes>
       {/* <Routes>
         <Route path="/" element={<Homenavbar />} />

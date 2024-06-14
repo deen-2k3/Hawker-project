@@ -17,7 +17,15 @@ const customerSchema = new Schema({
     address:{
         type:String,
         required:true
-    }
+    },
+    // cart:{ 
+    //     type: Schema.Types.ObjectId,
+    //      ref: "Cart",
+    //     },
+    // orderHistory:{
+    //     type: Schema.Types.objectId,
+    //     ref:"orderHistory",
+    // }
 })
 
 const Customer = mongoose.model("Customer", customerSchema);

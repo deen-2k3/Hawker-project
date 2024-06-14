@@ -68,9 +68,23 @@ router.delete("/cart/:id", async(req, res)=>{
 })
 router.post("/cart/addToCart", async(req, res)=>{
     const item = req.body;
-    const newItem = new Cart(item);
-    await newItem.save();
-    res.send(item);
+    const itemId=item._id;
+    try{
+        const existingItem = await Cart.findOne({_id:itemId});
+        if(existingItem){
+            req.flash("message", "Item is already in cart");
+            return res.status(400).json({message: req.flash("message")});
+        }
+        const newItem = new Cart(item);
+        await newItem.save();
+        req.flash("message", "Item added to cart successfully");
+        res.status(400).json({message: req.flash("message")});
+        // res.send(item);
+    }
+    catch(err){
+        console.log("error adding item to cart:", err);
+        res.status(500).json({message:"Internal server error"});
+    }
 })
 router.get("/orderHistory", async(req, res)=>{
     const orderHistory = await OrderHistory.find({});

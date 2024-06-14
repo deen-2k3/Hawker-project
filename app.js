@@ -4,6 +4,8 @@ const port = 8080;
 const mongoose = require('mongoose');
 const cors = require("cors");
 const Customer = require("./models/customer.js");
+const session = require("express-session");
+const flash = require("connect-flash");
 
 // Import models
 const UserModel = require("./models/User");
@@ -17,6 +19,14 @@ const vegetableRouter = require('./routes/sellercard');
 // Middleware
 app.use(express.json());
 app.use(cors());
+app.use(session({secret:"mysecret", resave: false, saveUninitialized:true}));
+app.use(flash());
+
+// Middleware for flash message
+app.use((req, res, next)=>{
+    res.locals.mssage = req.flash("message");
+    next();
+})
 
 // MongoDB connection
 const dbUrl = "mongodb://127.0.0.1:27017/hawker";
