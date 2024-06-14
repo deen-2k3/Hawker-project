@@ -4,26 +4,26 @@ const port = 8080;
 const mongoose = require('mongoose');
 const cors = require("cors");
 const bcrypt = require('bcrypt');
-const Customer = require("./models/customer.js");
-const jwt =require('jsonwebtoken')
-const cookieParser= require('cookie-parser')
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
 
 const saltRounds = 10;
 
 // Import models
 const UserModel = require("./models/User");
 const Addvegetable = require("./models/Additems");
+const Customer = require("./models/customer.js");
 
-const customer = require("./routes/customer");
 // Import routes
+const customer = require("./routes/customer");
 const sellerRouter = require("./routes/seller");
 const vegetableRouter = require('./routes/sellercard');
 
 // Middleware
 app.use(express.json());
 app.use(cors({
-    origin:["http://localhost:5173"],
-    methods: ["GET","POST"],
+    origin: ["http://localhost:5173"],
+    methods: ["GET", "POST"],
     credentials: true
 }));
 app.use(cookieParser());
@@ -43,6 +43,9 @@ async function main() {
     });
 }
 
+// JWT Secret Key
+const JWT_SECRET = "jwt-secret-key";
+
 // Routes
 app.post('/login', (req, res) => {
     const { email, password } = req.body;
@@ -51,8 +54,8 @@ app.post('/login', (req, res) => {
             if (user) {
                 bcrypt.compare(password, user.password, (err, result) => {
                     if (result) {
-                        const token=jwt.sign({email:user.email},"jwt-secret-key",{expiresIn:"1d"})
-                        res.cookie("token",token);
+                        const token = jwt.sign({ id: user._id, email: user.email }, JWT_SECRET, { expiresIn: "1d" });
+                        res.cookie("token", token);
                         res.json("Success");
                     } else {
                         res.json("The password is incorrect");
@@ -93,9 +96,31 @@ app.get("/", (req, res) => {
     res.send("This is the home route");
 });
 
-app.use('/customer', customer);
+// Authentication Middleware
+const auth = async (req, res, next) => {
+    try {
+        const token = req.cookies.token;
+        if (!token) {
+            return res.status(401).send('Unauthorized: No token passed');
+        }
+        const verifiedToken = jwt.verify(token, JWT_SECRET);
+        const rootUser = await UserModel.findOne({ _id: verifiedToken.id });
+        if (!rootUser) {
+            throw new Error('User not found');
+        }
+        req.token = verifiedToken;
+        req.rootUser = rootUser;
+        req.userID = rootUser._id;
+        next();
+    } catch (error) {
+        res.status(401).send('Unauthorized: Invalid token');
+        console.error(error);
+    }
+};
+
 // Use the routers
-app.use('/newhawker', sellerRouter);
+app.use('/customer', customer);
+app.use('/newhawker',auth, sellerRouter);
 app.use('/scard/vegetables', vegetableRouter);
 
 app.listen(port, () => {
