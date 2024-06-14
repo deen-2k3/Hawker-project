@@ -6,13 +6,19 @@ const cors = require("cors");
 const Customer = require("./models/customer.js");
 const session = require("express-session");
 const flash = require("connect-flash");
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
+
+const saltRounds = 10;
 
 // Import models
 const UserModel = require("./models/User");
 const Addvegetable = require("./models/Additems");
+const Customer = require("./models/customer.js");
 
-const customer = require("./routes/customer");
 // Import routes
+const customer = require("./routes/customer");
 const sellerRouter = require("./routes/seller");
 const vegetableRouter = require('./routes/sellercard');
 
@@ -27,6 +33,12 @@ app.use((req, res, next)=>{
     res.locals.mssage = req.flash("message");
     next();
 })
+app.use(cors({
+    origin: ["http://localhost:5173"],
+    methods: ["GET", "POST"],
+    credentials: true
+}));
+app.use(cookieParser());
 
 // MongoDB connection
 const dbUrl = "mongodb://127.0.0.1:27017/hawker";
@@ -43,27 +55,41 @@ async function main() {
     });
 }
 
+// JWT Secret Key
+const JWT_SECRET = "jwt-secret-key";
+
 // Routes
 app.post('/login', (req, res) => {
     const { email, password } = req.body;
     UserModel.findOne({ email: email })
         .then(user => {
             if (user) {
-                if (user.password === password) {
-                    res.json("Success");
-                } else {
-                    res.json("The password is incorrect");
-                }
+                bcrypt.compare(password, user.password, (err, result) => {
+                    if (result) {
+                        const token = jwt.sign({ id: user._id, email: user.email }, JWT_SECRET, { expiresIn: "1d" });
+                        res.cookie("token", token);
+                        res.json("Success");
+                    } else {
+                        res.json("The password is incorrect");
+                    }
+                });
             } else {
                 res.json("No record existed");
             }
-        });
+        })
+        .catch(err => res.status(500).json({ error: err.message }));
 });
 
 app.post('/signup', (req, res) => {
-    UserModel.create(req.body)
-        .then(user => res.json(user))
-        .catch(err => res.status(400).json({ error: err.message }));
+    const { email, password } = req.body;
+    bcrypt.hash(password, saltRounds, (err, hash) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        UserModel.create({ email, password: hash })
+            .then(user => res.json(user))
+            .catch(err => res.status(400).json({ error: err.message }));
+    });
 });
 
 app.post('/additem', (req, res) => {
@@ -82,9 +108,31 @@ app.get("/", (req, res) => {
     res.send("This is the home route");
 });
 
-app.use('/customer', customer);
+// Authentication Middleware
+const auth = async (req, res, next) => {
+    try {
+        const token = req.cookies.token;
+        if (!token) {
+            return res.status(401).send('Unauthorized: No token passed');
+        }
+        const verifiedToken = jwt.verify(token, JWT_SECRET);
+        const rootUser = await UserModel.findOne({ _id: verifiedToken.id });
+        if (!rootUser) {
+            throw new Error('User not found');
+        }
+        req.token = verifiedToken;
+        req.rootUser = rootUser;
+        req.userID = rootUser._id;
+        next();
+    } catch (error) {
+        res.status(401).send('Unauthorized: Invalid token');
+        console.error(error);
+    }
+};
+
 // Use the routers
-app.use('/newhawker', sellerRouter);
+app.use('/customer', customer);
+app.use('/newhawker',auth, sellerRouter);
 app.use('/scard/vegetables', vegetableRouter);
 
 app.listen(port, () => {
