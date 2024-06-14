@@ -3,6 +3,9 @@ const app = express();
 const port = 8080;
 const mongoose = require('mongoose');
 const cors = require("cors");
+const Customer = require("./models/customer.js");
+const session = require("express-session");
+const flash = require("connect-flash");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
@@ -21,6 +24,15 @@ const vegetableRouter = require('./routes/sellercard');
 
 // Middleware
 app.use(express.json());
+app.use(cors());
+app.use(session({secret:"mysecret", resave: false, saveUninitialized:true}));
+app.use(flash());
+
+// Middleware for flash message
+app.use((req, res, next)=>{
+    res.locals.mssage = req.flash("message");
+    next();
+})
 app.use(cors({
     origin: ["http://localhost:5173"],
     methods: ["GET", "POST"],

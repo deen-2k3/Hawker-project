@@ -6,7 +6,7 @@ import axios from 'axios';
 export default function CustomerShowCard() {
     let {id} = useParams();
     const [item, setItem] = useState(
-    { 
+    {
     title:"",
     name:"",
     quantity:"",
@@ -15,13 +15,20 @@ export default function CustomerShowCard() {
     location:"",
     country:"",
   })
+  const [message, setMessage] = useState("");
   const addToCart= async()=>{
     try{
-        await axios.post("http://localhost:8080/customer/cart/addToCart", item);
+        const response = await axios.post("http://localhost:8080/customer/cart/addToCart", item);
+        setMessage(response.data.message);
         console.log("item is saved");
     }
     catch(err){
-        console.log(err);
+        if(err.response){
+            setMessage(err.response.data.message);
+        }
+        else{
+            console.log(err);
+        }
     }
   }
   useEffect(()=>{
@@ -41,9 +48,12 @@ export default function CustomerShowCard() {
         <>
         {/* <Homenavbar/> */}
             <div className='container py-5'>
+                {message && (<div className={"alert-success"}>
+                    {message}
+                </div>)}
                 <div className='show_card row row-cols-lg-2 row-cols-md-2 row-cols-sm-1'>
                     <div >
-                        <img src={"https://images.unsplash.com/photo-1582284540020-8acbe03f4924?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} alt={item.name} className='image' />
+                        <img src={item.image} alt={item.name} className='image' />
                     </div>
                     <div className='about'>
                     <h4 style={{"marginTop":"20px"}}>{item.title}</h4>
