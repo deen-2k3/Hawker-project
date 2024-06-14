@@ -3,19 +3,20 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-function Login({ setIsAuthenticated }) {
+function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
+  axios.defaults.withCredentials=true;
   const handleSubmit = (e) => {
     e.preventDefault();
     axios.post('http://localhost:8080/login', { email, password })
       .then(result => {
         console.log(result);
         if (result.data === "Success") {
-          setIsAuthenticated(true);
-          navigate('/hawkerhome'); // Navigate to the protected route
+          
+          navigate('/'); // Navigate to the protected route
         }
       })
       .catch(error => {
