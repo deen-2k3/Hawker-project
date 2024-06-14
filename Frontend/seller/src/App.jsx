@@ -27,9 +27,9 @@ function App() {
       <Route path='/login' element={<Login/>}></Route>
       <Route path='/register' element={<Register/>}></Route>
       <Route path='/cart' element={<Cart/>}></Route>
-      {/* <Route path='/customerHome' element={<CustomerHome/>}></Route> */}
-      {/* <Route path='/customerShowCard/:id' element={<CustomerShowCard/>}></Route> */}
-      {/* <Route path='/orderHistory' element={<OrderHistory/>}></Route> */}
+      <Route path='/customerHome' element={<CustomerHome/>}></Route>
+      <Route path='/customerShowCard/:id' element={<CustomerShowCard/>}></Route>
+      <Route path='/orderHistory' element={<OrderHistory/>}></Route>
     </Routes>
       {/* <Routes>
         <Route path="/" element={<Homenavbar />} />
