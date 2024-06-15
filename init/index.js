@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const initdata = require("./sellerdata.js");
-const Seller = require("../models/seller.js");
+const sampleSellers = require("./sellerdata.js");
+const Addvegetable = require("../models/Additems.js");
 const initcustomerdata = require("./customerdata.js");
 const Customer = require("../models/customer.js");
 
@@ -24,14 +24,13 @@ async function main() {
 // =======
 
 const initDB = async () => {
-// >>>>>>> main
-    await Seller.deleteMany({});
-    await Seller.insertMany(initdata.data);
-    console.log("data was initialized");
+    await Addvegetable.deleteMany({});
+    await Addvegetable.insertMany(sampleSellers);
+    console.log("Addvegetable data was initialized");
 }
 
 // <<<<<<< HEAD
-initDB();
+
 // =======
 const initCutsomerDB = async()=>{
     await Customer.deleteMany({});

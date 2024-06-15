@@ -9,13 +9,11 @@ const flash = require("connect-flash");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
-
 const saltRounds = 10;
 
 // Import models
 const UserModel = require("./models/User");
 const Addvegetable = require("./models/Additems");
-const Customer = require("./models/customer.js");
 
 // Import routes
 const customer = require("./routes/customer");
@@ -92,17 +90,6 @@ app.post('/signup', (req, res) => {
     });
 });
 
-app.post('/additem', (req, res) => {
-    Addvegetable.create(req.body)
-        .then(newItem => {
-            console.log(newItem);
-            res.json(newItem);
-        })
-        .catch(err => {
-            console.error(err);
-            res.status(400).json({ error: err.message });
-        });
-});
 
 app.get("/", (req, res) => {
     res.send("This is the home route");
@@ -134,7 +121,18 @@ const auth = async (req, res, next) => {
 app.use('/customer', customer);
 app.use('/newhawker',auth, sellerRouter);
 app.use('/scard/vegetables', vegetableRouter);
-
+app.post('/additem',(req, res) => {
+    Addvegetable.create(req.body)
+        .then(newItem => {
+            console.log(newItem);
+            res.json(newItem);
+        })
+        .catch(err => {
+            console.error(err);
+            res.status(400).json({ error: err.message });
+        });
+});
 app.listen(port, () => {
     console.log(`App is listening on port ${port}`);
 });
+
