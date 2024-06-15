@@ -19,7 +19,7 @@ function App() {
   return (
     <BrowserRouter>
     <Routes>
-    {/* <Route path='/' element={<Home/>}></Route>
+    <Route path='/' element={<Home/>}></Route>
     <Route path='/addhawkerhome' element={<AddHawkerHome/>}></Route>
     <Route path='/hawkerregister' element={<HawkerRegister/>}></Route>
       <Route path='/login' element={<Login/>}></Route>
@@ -27,7 +27,7 @@ function App() {
       <Route path='/cart' element={<Cart/>}></Route>
       <Route path='/customerHome' element={<CustomerHome/>}></Route>
       <Route path='/customerShowCard/:id' element={<CustomerShowCard/>}></Route>
-      <Route path='/orderHistory' element={<OrderHistory/>}></Route> */}
+      <Route path='/orderHistory' element={<OrderHistory/>}></Route>
       <Route path='/'element={<HawkerHomenavbar/>}></Route>
       <Route path='/additems' element={<Additems/>}></Route>
     </Routes>

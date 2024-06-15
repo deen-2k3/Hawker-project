@@ -5,7 +5,10 @@ const Cart = require("../models/cart.js");
 const OrderHistory = require("../models/orderHistory");
 const dbUrl="mongodb://127.0.0.1:27017/hawker"
 const router = express.Router();
-const Seller= require("../models/seller.js");
+// const Seller= require("../models/seller.js");
+const Addvegetable = require("../models/Additems.js");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const cors = require("cors");
 const axios = require('axios');
 router.use(cors());
@@ -22,24 +25,51 @@ async function main() {
     await mongoose.connect(dbUrl);
 }
 router.get("/allitems", async(req, res)=>{
-    const allItems = await Seller.find({});
+    const allItems = await Addvegetable.find({});
     res.send(allItems);
 })
 router.get("/item/:id", async(req, res)=>{
     let {id} = req.params;
-    const data = await Seller.findById(id);
+    const data = await Addvegetable.findById(id);
     res.send(data);
 })
-router.get("/addCustomer", async(req,res)=>{
-    let sampleCustomer = new Customer({
-        name: "John Doe",
-        username: "johndoe123",
-        email: "johndoe@example.com",
-        address: "123 Main Street, Cityville, USA"
-      });
-      await sampleCustomer.save();
-      console.log("sample customer was saved");
-      res.send("sample customer was saved in database");
+router.post("/user/register", (req,res)=>{
+    try{
+        const {name, email, password} = req.body;
+
+        bcrypt.genSalt(10, function(err, salt){
+            bcrypt.hash(password, salt, async function (err, hash){
+                if(err){
+                    return res.send(err.message);
+                }
+                else{
+                    let user = await Customer.create({
+                        email,
+                        password:hash,
+                        name,
+                    });
+                    let token = jwt.sign({email, id:user._id}, "myjwtsecret");
+                    res.cookie("token", token);
+                    res.send("user created successfully");
+                }
+            });
+        });
+    }
+    catch(err){
+        res.send(err.message);
+    }
+
+
+    // let sampleCustomer = new Customer({
+    //     name: "John Doe",
+    //     username: "johndoe123",
+    //     email: "johndoe@example.com",
+    //     address: "123 Main Street, Cityville, USA"
+    //   });
+    //   await sampleCustomer.save();
+    //   console.log("sample customer was saved");
+    //   res.send("sample customer was saved in database");
+
 });
 router.get("/cart", async(req, res)=>{
     const cart = await Cart.find({});
