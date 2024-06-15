@@ -39,16 +39,16 @@ const initCutsomerDB = async()=>{
 }
 const initCartDB = async()=>{
     await Cart.deleteMany({});
-    await Cart.insertMany(initdata.data);
+    await Cart.insertMany(sampleSellers);
     console.log("orderHistory data was initailized");
 }
 initDB();
-initCartDB();
-initCutsomerDB();
+// initCartDB();
+// initCutsomerDB();
 const initOrderHistorytDB = async()=>{
     await OrderHistory.deleteMany({});
-    await OrderHistory.insertMany(initdata.data);
+    await OrderHistory.insertMany(sampleSellers);
     console.log("Cart data was initailized");
 }
-initOrderHistorytDB()
+// initOrderHistorytDB()
 // >>>>>>> origin/main
