@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Footer from './Footer';
+import Homenavbar from './Homenavbar';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -25,6 +27,8 @@ function Login() {
   };
 
   return (
+    <div>
+       <Homenavbar/>
     <div className='d-flex justify-content-center align-items-center bg-primary vh-100'>
       <div className='bg-white p-3 rounded w-25'>
         <form onSubmit={handleSubmit}>
@@ -51,7 +55,11 @@ function Login() {
           <Link to="/register" className='btn btn-default border w-100 bg-light'>Create Account</Link>
         </form>
       </div>
+    
     </div>
+    <Footer/>
+    </div>
+
   );
 }
 

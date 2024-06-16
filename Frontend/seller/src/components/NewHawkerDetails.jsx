@@ -1,5 +1,8 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Footer from './Footer';
+import Homenavbar from './Homenavbar';
 
 export default function NewHawkerDetails() {
   const [titleName, setTitleName] = useState('');
@@ -8,6 +11,7 @@ export default function NewHawkerDetails() {
   const [address, setAddress] = useState('');
   const [image, setImage] = useState('');
   const owner = '663a6c6eeb2222fccd173057'; // Replace with actual owner ID logic
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,6 +20,7 @@ export default function NewHawkerDetails() {
     axios.post('http://localhost:8080/newhawker', hawkerData)
       .then(result => {
         console.log('Server response:', result.data);
+        navigate('/hawkerdashboard'); // Replace '/success' with the path you want to navigate to
       })
       .catch(err => {
         if (err.response) {
@@ -31,6 +36,8 @@ export default function NewHawkerDetails() {
   };
 
   return (
+    <div>
+      <Homenavbar/>
     <div className='d-flex justify-content-center align-items-center bg-primary vh-100'>
       <div className='bg-white p-3 rounded w-25'>
         <p>SignUp</p>
@@ -66,5 +73,8 @@ export default function NewHawkerDetails() {
         </form>
       </div>
     </div>
+    <Footer/>
+    </div>
+    
   );
 }

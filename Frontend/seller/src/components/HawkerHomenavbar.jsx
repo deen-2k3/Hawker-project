@@ -4,6 +4,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom'; // Import NavLink instead of Link
 import Hawkercard from './Hawkercard';
+import Footer from './Footer';
 
 export default function HawkerHomenavbar() {
   return (
@@ -20,6 +21,7 @@ export default function HawkerHomenavbar() {
         </Container>
       </Navbar>
       <Hawkercard/>
+      <Footer/>
     </>
   );
 }

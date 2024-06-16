@@ -3,6 +3,8 @@
 import { useState } from "react";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Footer from "./Footer";
+import Homenavbar from "./Homenavbar";
 
 
 
@@ -24,7 +26,8 @@ function Register(){
   }
     return (
       
-
+   <div>
+    <Homenavbar/>
       <div className='d-flex justify-content-center align-items-center bg-primary vh-100'>
         <div className='bg-white p-3 rounded w-25'>
         <p>SignUp</p>
@@ -50,6 +53,8 @@ function Register(){
             {/* <button className='btn btn-default border w-100 bg-light'>Create Account</button> */}
           </form>
         </div>
+      </div>
+      <Footer/>
       </div>
     )
   }
